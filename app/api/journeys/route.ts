@@ -14,22 +14,30 @@ const postCreateSchema = z.object({
 export async function GET() {
   try {
     const session = await getServerSession(authOptions)
-
     if (!session) {
       return new Response("Unauthorized", { status: 403 })
     }
-
     const { user } = session
-    const posts = await db.post.findMany({
+    const posts = await db.journey.findMany({
       select: {
         id: true,
         title: true,
-        published: true,
+        // published: true,
         createdAt: true,
+        urls: {
+          select: {
+            id: true,
+            url: true,
+            text: true
+          }
+        }
       },
+      // where: {
+      //   authorId: "clswr7mkg0000a8ejyr54b2el",
+      // },
       where: {
-        authorId: user.id,
-      },
+          authorId: user.id,
+        },
     })
 
     return new Response(JSON.stringify(posts))
@@ -45,6 +53,11 @@ export async function POST(req: Request) {
     if (!session) {
       return new Response("Unauthorized", { status: 403 })
     }
+    // var session = {
+    //   user: {
+    //     id: "clswr7mkg0000a8ejyr54b2el"
+    //   }
+    // };
 
     const { user } = session
     const subscriptionPlan = await getUserSubscriptionPlan(user.id)
@@ -52,7 +65,7 @@ export async function POST(req: Request) {
     // If user is on a free plan.
     // Check if user has reached limit of 3 posts.
     if (!subscriptionPlan?.isPro) {
-      const count = await db.post.count({
+      const count = await db.journey.count({
         where: {
           authorId: user.id,
         },
@@ -66,7 +79,7 @@ export async function POST(req: Request) {
     const json = await req.json()
     const body = postCreateSchema.parse(json)
 
-    const post = await db.post.create({
+    const post = await db.journey.create({
       data: {
         title: body.title,
         content: body.content,
