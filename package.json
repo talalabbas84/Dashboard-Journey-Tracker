@@ -13,7 +13,9 @@
     "start": "next start",
     "lint": "next lint",
     "preview": "next build && next start",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@editorjs/code": "^2.8.0",
@@ -93,6 +95,9 @@
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.9",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.1",
+    "@types/jest": "^29.5.12",
     "@types/node": "^18.16.0",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
@@ -103,6 +108,8 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-tailwindcss": "^3.11.0",
     "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "mdast-util-toc": "^6.1.1",
     "postcss": "^8.4.23",
     "prettier": "^2.8.8",
