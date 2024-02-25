@@ -1,0 +1,24 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - run:
+          name: Install pnpm
+          command: |
+            sudo npm install -g pnpm
+      - restore_cache:
+          key: dependency-cache-{{ checksum "pnpm-lock.yaml" }}
+      - run:
+          name: Install Dependencies
+          command: pnpm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Run tests
+          command: pnpm run test
