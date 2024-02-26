@@ -20,14 +20,14 @@ export default async function DashboardPage() {
     redirect(authOptions?.pages?.signIn || "/login")
   }
 
-  const posts = await db.post.findMany({
+  const posts = await db.journey.findMany({
     where: {
       authorId: user.id,
     },
     select: {
       id: true,
       title: true,
-      published: true,
+      // published: true,
       createdAt: true,
     },
     orderBy: {

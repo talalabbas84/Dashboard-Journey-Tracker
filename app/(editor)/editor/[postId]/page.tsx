@@ -1,13 +1,13 @@
 import { notFound, redirect } from "next/navigation"
-import { Post, User } from "@prisma/client"
+import { Journey, User } from "@prisma/client"
 
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import { Editor } from "@/components/editor"
 
-async function getPostForUser(postId: Post["id"], userId: User["id"]) {
-  return await db.post.findFirst({
+async function getPostForUser(postId: Journey["id"], userId: User["id"]) {
+  return await db.journey.findFirst({
     where: {
       id: postId,
       authorId: userId,
@@ -38,7 +38,7 @@ export default async function EditorPage({ params }: EditorPageProps) {
         id: post.id,
         title: post.title,
         content: post.content,
-        published: post.published,
+        // published: post.published,
       }}
     />
   )

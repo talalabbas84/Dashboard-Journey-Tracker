@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import EditorJS from "@editorjs/editorjs"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Post } from "@prisma/client"
+import { Journey } from "@prisma/client"
 import { useForm } from "react-hook-form"
 import TextareaAutosize from "react-textarea-autosize"
 import * as z from "zod"
@@ -18,7 +18,7 @@ import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
 interface EditorProps {
-  post: Pick<Post, "id" | "title" | "content" | "published">
+  post: Pick<Journey, "id" | "title" | "content">
 }
 
 type FormData = z.infer<typeof postPatchSchema>
@@ -135,7 +135,7 @@ export function Editor({ post }: EditorProps) {
               </>
             </Link>
             <p className="text-sm text-muted-foreground">
-              {post.published ? "Published" : "Draft"}
+              {false ? "Published" : "Draft"}
             </p>
           </div>
           <button type="submit" className={cn(buttonVariants())}>
