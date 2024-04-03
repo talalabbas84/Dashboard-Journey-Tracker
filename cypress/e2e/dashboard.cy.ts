@@ -1,5 +1,6 @@
 describe("Dashboard Navigation and Functionality", () => {
   beforeEach(() => {
+    // @ts-ignore
     cy.login()
     cy.visit("http://localhost:3000/dashboard")
     cy.wait(1000) // wait for the dashboard to load

@@ -1,6 +1,7 @@
 describe("Navigation", () => {
   it("should navigate to the dashboard page", () => {
     // Start from the index page
+    // @ts-ignore
     cy.login()
     cy.visit("http://localhost:3000/dashboard")
 
@@ -14,6 +15,7 @@ describe("User logout", () => {
     // Step 1: Log in as a user
     // This step assumes you have a custom command setup to programmatically log in
     // For example, using `cy.login()` which you might have defined in your Cypress commands file
+    // @ts-ignore
     cy.login()
 
     // Step 2: Visit a page where the logout dropdown is accessible

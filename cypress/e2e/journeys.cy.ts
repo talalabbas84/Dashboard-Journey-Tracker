@@ -1,5 +1,6 @@
 describe("Journey Interactions", () => {
   beforeEach(() => {
+    // @ts-ignore
     cy.login()
     cy.visit("http://localhost:3000/dashboard")
     cy.wait(1000) // ensure the page is loaded
@@ -28,6 +29,7 @@ describe("Journey Interactions", () => {
 
 describe("Recorded Text Deletion within a Journey", () => {
   beforeEach(() => {
+    // @ts-ignore
     cy.login()
     cy.visit("http://localhost:3000/dashboard")
     cy.wait(1000) // Adjust based on your app's loading time
@@ -59,6 +61,7 @@ describe("Recorded Text Deletion within a Journey", () => {
 
 describe("Summarize Button State", () => {
   beforeEach(() => {
+    // @ts-ignore
     cy.login()
     cy.visit("http://localhost:3000/dashboard")
     cy.wait(1000) // Adjust based on your app's loading time

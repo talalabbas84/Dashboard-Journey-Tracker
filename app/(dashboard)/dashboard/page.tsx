@@ -5,13 +5,8 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/session";
-import { EmptyPlaceholder } from "@/components/empty-placeholder";
-import { DashboardHeader } from "@/components/header";
-import { JourneyItem } from "@/components/journey-item";
-import { PostCreateButton } from "@/components/post-create-button";
-import { DashboardShell } from "@/components/shell"
 
-import DashboardPageCompoent from "./pageComponent"
+import DashboardPageCompoent from "./pageComponent";
 
 
 export const metadata = {
