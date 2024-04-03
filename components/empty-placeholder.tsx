@@ -1,7 +1,13 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
-import { Icons } from "@/components/icons"
+
+
+import { Icons } from "@/components/icons";
+import { cn } from "@/lib/utils";
+
+
+
+
 
 interface EmptyPlaceholderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -10,6 +16,7 @@ export function EmptyPlaceholder({
   children,
   ...props
 }: EmptyPlaceholderProps) {
+ 
   return (
     <div
       className={cn(
@@ -38,7 +45,8 @@ EmptyPlaceholder.Icon = function EmptyPlaceHolderIcon({
   const Icon = Icons[name]
 
   if (!Icon) {
-    return null
+   console.error(`Icon "${name}" does not exist.`);
+    return null; // Early return if Icon doesn't exist
   }
 
   return (

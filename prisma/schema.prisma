@@ -53,7 +53,6 @@ model User {
   accounts               Account[]
   Journey                Journey[]
   sessions               Session[]
-  Url                    Url[]
 
   @@map("users")
 }
@@ -68,28 +67,24 @@ model VerificationToken {
 }
 
 model Journey {
-  id        String   @id @default(cuid())
-  title     String
-  content   Json?
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @map("updated_at")
-  authorId  String
-  author    User     @relation(fields: [authorId], references: [id])
-  urls      Url[]
+  id            String         @id @default(cuid())
+  label         String
+  content       Json?
+  authorId      String
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @default(now()) @map("updated_at")
+  isArchived    Boolean        @default(false) @map("is_archived")
+  recordedTexts RecordedText[]
+  author        User           @relation(fields: [authorId], references: [id])
 
-  @@map("posts")
+  @@map("journeys")
 }
 
-model Url {
+model RecordedText {
   id        String   @id @default(cuid())
+  text      String
   url       String
-  text      String[]
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @map("updated_at")
-  authorId  String
-  journeyId String?
-  author    User     @relation(fields: [authorId], references: [id])
-  Journey   Journey? @relation(fields: [journeyId], references: [id])
-
-  @@map("urls")
+  createdAt DateTime @default(now())
+  journeyId String
+  journey   Journey  @relation(fields: [journeyId], references: [id])
 }

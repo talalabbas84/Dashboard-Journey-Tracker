@@ -1,8 +1,7 @@
 "use client"
 
-import Link from "next/link"
 import { User } from "next-auth"
-import { signOut } from "next-auth/react"
+import Link from "next/link"
 
 import {
   DropdownMenu,
@@ -12,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { UserAvatar } from "@/components/user-avatar"
+import { signOut } from "next-auth/react"
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, "name" | "image" | "email">
@@ -22,8 +22,9 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
+        id="user-avatar"
           user={{ name: user.name || null, image: user.image || null }}
-          className="h-8 w-8"
+          className="size-8"
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -41,15 +42,11 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         <DropdownMenuItem asChild>
           <Link href="/dashboard">Dashboard</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link href="/dashboard/billing">Billing</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link href="/dashboard/settings">Settings</Link>
-        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className="cursor-pointer"
+          id="sign-out"
+          data-testid="logout-button"
           onSelect={(event) => {
             event.preventDefault()
             signOut({

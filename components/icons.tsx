@@ -1,30 +1,8 @@
-import {
-  AlertTriangle,
-  ArrowRight,
-  Check,
-  ChevronLeft,
-  ChevronRight,
-  Command,
-  CreditCard,
-  File,
-  FileText,
-  HelpCircle,
-  Image,
-  Laptop,
-  Loader2,
-  LucideProps,
-  Moon,
-  MoreVertical,
-  Pizza,
-  Plus,
-  Settings,
-  SunMedium,
-  Trash,
-  Twitter,
-  User,
-  X,
-  type Icon as LucideIcon,
-} from "lucide-react"
+import { AlertTriangle, ArrowRight, Check, ChevronLeft, ChevronRight, Command, CreditCard, File, FileText, HelpCircle, Image, Laptop, Loader2, LucideProps, Moon, MoreVertical, Pizza, Plus, Settings, SunMedium, Trash, Twitter, User, X, type Icon as LucideIcon } from "lucide-react";
+
+
+
+
 
 export type Icon = LucideIcon
 
@@ -69,4 +47,10 @@ export const Icons = {
   ),
   twitter: Twitter,
   check: Check,
+}
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
+  trash: () => <svg>...</svg>,
+  // other icons
 }
