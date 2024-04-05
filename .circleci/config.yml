@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cypress/base:18.0.0 # This image has Cypress dependencies
+      - image: cypress/base:latest # Replace with a valid image tag
     resource_class: large
     parallelism: 10
 
@@ -33,16 +33,12 @@ jobs:
       - run:
           name: Run Jest Unit Tests
           command: |
-            pnpm run test # This should correspond to the script in your package.json that runs Jest
+            pnpm run test # Make sure this script is defined in your package.json
       - run:
           name: Run Cypress E2E Tests
           command: |
-            # If you need a server running for your tests, start it before running Cypress tests
-            # Replace 'pnpm start --silent &' with your server's start command
-            # pnpm start --silent & # Uncomment if needed
-            # Sleep for a few seconds to ensure the server starts
-            # sleep 10 # Uncomment and adjust the duration if needed
-            pnpm run cypress:run # This should correspond to the script in your package.json that runs Cypress tests
+            # Add server start command if necessary before running tests
+            pnpm run cypress:run # Make sure this script is defined in your package.json
 
 workflows:
   version: 2
