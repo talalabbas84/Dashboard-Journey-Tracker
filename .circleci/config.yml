@@ -10,9 +10,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          name: Restore pnpm Package Cache
+          name: Restore pnpm and Cypress Cache
           keys:
-            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+            - pnpm-and-cypress-{{ checksum "pnpm-lock.yaml" }}
+            - pnpm-and-cypress-
       - run:
           name: Install pnpm package manager
           command: |
@@ -24,25 +25,22 @@ jobs:
           command: |
             pnpm install
       - save_cache:
-          name: Save pnpm Package Cache
-          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+          name: Save pnpm and Cypress Cache
+          key: pnpm-and-cypress-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - .pnpm-store
+            - ~/.cache/Cypress # Cache the Cypress binary
       - run:
           name: Run Jest Unit Tests
           command: |
-            pnpm run test # Replace with your Jest test script if it's not the default
+            pnpm run test
       - run:
           name: Run Cypress E2E Tests
           command: |
-            # First, ensure that your server is running in the background
-            # For example, if you need to run `pnpm start` to start your server, do it here
-            # pnpm start --silent & # Uncomment and adjust if necessary
-            # Ensure the server has time to start before running tests
-            # sleep 10 # Uncomment and adjust the timing if necessary
-            # Now run Cypress tests
-            pnpm run cypress:open # However, for CI, you likely need "cypress run" instead of "cypress open"
-      
+            # Assuming you don't need a server running for your tests. 
+            # If you do, start it before running Cypress tests.
+            pnpm run cypress:run # Use cypress:run for CI environments
+
 workflows:
   version: 2
   build_and_test:
