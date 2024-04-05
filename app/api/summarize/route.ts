@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       stream: true,
       max_tokens: 1500,
       // 💡 Craft your own prompt here based on your needs.
-      prompt: `Summarize the following text in two or less sentences: ${text}`,
+      prompt: `Summarize the following texts: ${text}`,
     })
 
     return new StreamingTextResponse(OpenAIStream(response))
