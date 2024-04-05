@@ -3,7 +3,7 @@ describe("Navigation", () => {
     // Start from the index page
     // @ts-ignore
     cy.login()
-    cy.visit("http://localhost:3000/dashboard")
+    cy.visit("https://dashboard-journey-tracker.vercel.app/dashboard")
 
     
   })
@@ -20,7 +20,7 @@ describe("User logout", () => {
 
     // Step 2: Visit a page where the logout dropdown is accessible
     // Assuming the UserAccountNav component is available on the dashboard page
-    cy.visit("http://localhost:3000/dashboard")
+    cy.visit("https://dashboard-journey-tracker.vercel.app/dashboard")
 
     // Wait for necessary elements to be visible or for the application to be in a ready state
     cy.wait(1000) // Adjust based on your app's loading time or use more specific waits

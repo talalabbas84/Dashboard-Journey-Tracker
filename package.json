@@ -17,6 +17,7 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "coverage": "nyc npm run test"
   },
   "dependencies": {

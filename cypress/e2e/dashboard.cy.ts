@@ -2,7 +2,7 @@ describe("Dashboard Navigation and Functionality", () => {
   beforeEach(() => {
     // @ts-ignore
     cy.login()
-    cy.visit("http://localhost:3000/dashboard")
+    cy.visit("https://dashboard-journey-tracker.vercel.app/dashboard")
     cy.wait(1000) // wait for the dashboard to load
   })
 
@@ -12,7 +12,7 @@ describe("Dashboard Navigation and Functionality", () => {
 
   it("should redirect to login when the user is not logged in", () => {
     cy.clearCookies() // Clear cookies to ensure there's no valid session
-    cy.visit("http://localhost:3000/dashboard")
+    cy.visit("https://dashboard-journey-tracker.vercel.app/dashboard")
     cy.url().should("include", "/login")
   })
 

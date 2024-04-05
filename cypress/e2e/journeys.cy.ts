@@ -2,7 +2,7 @@ describe("Journey Interactions", () => {
   beforeEach(() => {
     // @ts-ignore
     cy.login()
-    cy.visit("http://localhost:3000/dashboard")
+    cy.visit("https://dashboard-journey-tracker.vercel.app/dashboard")
     cy.wait(1000) // ensure the page is loaded
     cy.get('[id^="journey-"]').last().click() // navigate to the last journey
     cy.wait(1000) // wait for journey page to load
@@ -31,7 +31,7 @@ describe("Recorded Text Deletion within a Journey", () => {
   beforeEach(() => {
     // @ts-ignore
     cy.login()
-    cy.visit("http://localhost:3000/dashboard")
+    cy.visit("https://dashboard-journey-tracker.vercel.app/dashboard")
     cy.wait(1000) // Adjust based on your app's loading time
     cy.get('[id^="journey-"]').last().click() // focus on a specific journey
     cy.wait(2000) // wait for the journey details to load
@@ -63,7 +63,7 @@ describe("Summarize Button State", () => {
   beforeEach(() => {
     // @ts-ignore
     cy.login()
-    cy.visit("http://localhost:3000/dashboard")
+    cy.visit("https://dashboard-journey-tracker.vercel.app/dashboard")
     cy.wait(1000) // Adjust based on your app's loading time
     cy.get('[id^="journey-"]').first().click() // Assuming this navigates to a journey detail page
     cy.wait(1000) // Wait for journey details to load
