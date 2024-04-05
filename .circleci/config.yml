@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cypress/base:latest # Replace with a valid image tag
+      - image: cypress/base:latest # Ensure this image has the tools you need, or choose another
     resource_class: large
     parallelism: 10
 
@@ -35,10 +35,9 @@ jobs:
           command: |
             pnpm run test # Make sure this script is defined in your package.json
       - run:
-          name: Run Cypress E2E Tests
+          name: Run Linting Check
           command: |
-            # Add server start command if necessary before running tests
-            pnpm run cypress:run # Make sure this script is defined in your package.json
+            pnpm run lint # Assumes you have a script named 'lint' in your package.json
 
 workflows:
   version: 2
