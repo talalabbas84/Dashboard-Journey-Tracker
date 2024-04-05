@@ -3,14 +3,14 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: node:18
+      - image: cypress/base:18.0.0 # This image has Cypress dependencies
     resource_class: large
     parallelism: 10
 
     steps:
       - checkout
       - restore_cache:
-          name: Restore pnpm and Cypress Cache
+          name: Restore pnpm Package Cache
           keys:
             - pnpm-and-cypress-{{ checksum "pnpm-lock.yaml" }}
             - pnpm-and-cypress-
@@ -25,21 +25,24 @@ jobs:
           command: |
             pnpm install
       - save_cache:
-          name: Save pnpm and Cypress Cache
+          name: Save pnpm Package Cache
           key: pnpm-and-cypress-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - .pnpm-store
-            - ~/.cache/Cypress # Cache the Cypress binary
+            - ~/.cache/Cypress
       - run:
           name: Run Jest Unit Tests
           command: |
-            pnpm run test
+            pnpm run test # This should correspond to the script in your package.json that runs Jest
       - run:
           name: Run Cypress E2E Tests
           command: |
-            # Assuming you don't need a server running for your tests. 
-            # If you do, start it before running Cypress tests.
-            pnpm run cypress:run # Use cypress:run for CI environments
+            # If you need a server running for your tests, start it before running Cypress tests
+            # Replace 'pnpm start --silent &' with your server's start command
+            # pnpm start --silent & # Uncomment if needed
+            # Sleep for a few seconds to ensure the server starts
+            # sleep 10 # Uncomment and adjust the duration if needed
+            pnpm run cypress:run # This should correspond to the script in your package.json that runs Cypress tests
 
 workflows:
   version: 2
