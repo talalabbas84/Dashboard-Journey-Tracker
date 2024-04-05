@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  build: # this can be any name you choose
+  build:
     docker:
       - image: node:18
     resource_class: large
@@ -28,3 +28,23 @@ jobs:
           key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - .pnpm-store
+      - run:
+          name: Run Jest Unit Tests
+          command: |
+            pnpm run test # Replace with your Jest test script if it's not the default
+      - run:
+          name: Run Cypress E2E Tests
+          command: |
+            # First, ensure that your server is running in the background
+            # For example, if you need to run `pnpm start` to start your server, do it here
+            # pnpm start --silent & # Uncomment and adjust if necessary
+            # Ensure the server has time to start before running tests
+            # sleep 10 # Uncomment and adjust the timing if necessary
+            # Now run Cypress tests
+            pnpm run cypress:open # However, for CI, you likely need "cypress run" instead of "cypress open"
+      
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build

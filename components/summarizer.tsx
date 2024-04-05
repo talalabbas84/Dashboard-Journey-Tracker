@@ -18,7 +18,7 @@ export function Summarizer({
   doNotShowAction,
 }: SummarizerProps) {
   const [isLoading, setIsLoading] = useState(false)
-  const [summary, setSummary] = useState<any>(journey.content)
+  const [summary, setSummary] = useState<any>(journey.content || "")
 
   const handleSummarize = () => {
     setIsLoading(true)

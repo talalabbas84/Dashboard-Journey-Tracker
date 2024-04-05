@@ -7,7 +7,9 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
+
 import "@/styles/globals.css"
+import React from "react"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -72,6 +74,8 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  // navigate to /dashboard
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
